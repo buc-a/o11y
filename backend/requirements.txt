@@ -4,4 +4,5 @@ sqlalchemy
 asyncpg
 alembic
 python-dotenv
+prometheus_fastapi_instrumentator
 

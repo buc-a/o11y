@@ -11,11 +11,17 @@ services:
       POSTGRES_PASSWORD: pass
     ports:
      - 5432:5432
-  adminer:
-    image: adminer
+
+  postgres_exporter:
+    image: prometheuscommunity/postgres-exporter
+    container_name: postgres_exporter
     restart: always
     ports:
-      - 8080:8080
+      - "9187:9187"
+    environment:
+      DATA_SOURCE_NAME: "postgresql://postgres:pass@db:5432/student_db?sslmode=disable"
+    depends_on:
+      - db
 
   web:
     build:
@@ -42,6 +48,7 @@ services:
       - "9090:9090"
     depends_on:
       - web
+      - postgres_exporter
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     
@@ -58,3 +65,4 @@ services:
       - ./grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
       - ./grafana/datasources/prometheus.yaml:/etc/grafana/provisioning/datasources/prometheus.yml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/alerting:/etc/grafana/provisioning/alerting/

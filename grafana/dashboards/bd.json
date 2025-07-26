@@ -131,7 +131,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "avg(rate(process_cpu_seconds_total{release=\"$release\", instance=\"$instance\"}[1m]) * 1000)",
+          "expr": "avg(rate(process_cpu_seconds_total[1m]) * 1000)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "CPU Time",
@@ -238,7 +238,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "avg(rate(process_resident_memory_bytes{release=\"$release\", instance=\"$instance\"}[1m]))",
+          "expr": "avg(rate(process_resident_memory_bytes[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Resident Mem",
@@ -251,7 +251,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "avg(rate(process_virtual_memory_bytes{release=\"$release\", instance=\"$instance\"}[1m]))",
+          "expr": "avg(rate(process_virtual_memory_bytes[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Virtual Mem",
@@ -342,9 +342,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_shared_buffers_bytes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_shared_buffers_bytes",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -418,9 +420,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_effective_cache_size_bytes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_effective_cache_size_bytes",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -494,9 +498,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_maintenance_work_mem_bytes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_maintenance_work_mem_bytes",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -570,10 +576,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_work_mem_bytes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_work_mem_bytes",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -648,9 +656,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_max_wal_size_bytes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_max_wal_size_bytes",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -724,9 +734,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_random_page_cost{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_random_page_cost",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -800,9 +812,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_seq_page_cost{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_seq_page_cost",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -876,9 +890,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_max_worker_processes{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_max_worker_processes",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -952,9 +968,11 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_settings_max_parallel_workers{instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "pg_settings_max_parallel_workers",
           "format": "time_series",
           "intervalFactor": 1,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1068,11 +1086,13 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_stat_activity_count{datname=~\"$datname\", instance=~\"$instance\", state=\"active\"} !=0",
+          "editorMode": "code",
+          "expr": "pg_stat_activity_count{datname=\"student_db\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}, s: {{state}}",
+          "range": true,
           "refId": "A",
           "step": 2
         }
@@ -1174,7 +1194,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(pg_stat_database_xact_commit{instance=\"$instance\", datname=\"student_db\"}[1m])",
+          "expr": "irate(pg_stat_database_xact_commit{datname=\"student_db\"}[1m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{datname}} commits",
@@ -1187,7 +1207,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(pg_stat_database_xact_rollback{instance=\"$instance\", datname=\"student_db\"}[1m])",
+          "expr": "irate(pg_stat_database_xact_rollback{datname=\"student_db\"}[1m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{datname}} rollbacks",
@@ -1292,7 +1312,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "pg_stat_database_tup_updated{datname=\"student_db\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_updated{datname=\"student_db\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1398,7 +1418,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "pg_stat_database_tup_fetched{datname=\"student_db\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_fetched{datname=\"student_db\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1504,7 +1524,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "pg_stat_database_tup_inserted{datname=\"student_db\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_inserted{datname=\"student_db\"} != 0",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1609,10 +1629,12 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "pg_stat_database_tup_deleted{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "editorMode": "code",
+          "expr": "pg_stat_database_tup_deleted{datname=\"student_db\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
+          "range": true,
           "refId": "A",
           "step": 2
         }
@@ -1714,7 +1736,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "pg_stat_database_tup_returned{datname=\"student_db\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_returned{datname=\"student_db\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1820,7 +1842,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "pg_stat_activity_count{datname=\"student_db\", instance=~\"$instance\", state=~\"idle|idle in transaction|idle in transaction (aborted)\"}",
+          "expr": "pg_stat_activity_count{datname=\"student_db\", state=~\"idle|idle in transaction|idle in transaction (aborted)\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}, s: {{state}}",
@@ -1842,162 +1864,7 @@
     "stats"
   ],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "text": "Prometheus",
-          "value": "PBFA97CFB590B2093"
-        },
-        "label": "datasource",
-        "name": "DS_PROMETHEUS",
-        "options": [],
-        "query": "prometheus",
-        "refresh": 1,
-        "regex": "",
-        "type": "datasource"
-      },
-      {
-        "auto": true,
-        "auto_count": 200,
-        "auto_min": "1s",
-        "current": {
-          "text": "5s",
-          "value": "5s"
-        },
-        "label": "Interval",
-        "name": "interval",
-        "options": [
-          {
-            "selected": false,
-            "text": "1s",
-            "value": "1s"
-          },
-          {
-            "selected": true,
-            "text": "5s",
-            "value": "5s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "5m",
-            "value": "5m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          }
-        ],
-        "query": "1s,5s,1m,5m,1h,6h,1d",
-        "refresh": 2,
-        "type": "interval"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": "PBFA97CFB590B2093",
-        "definition": "",
-        "includeAll": false,
-        "label": "Namespace",
-        "name": "namespace",
-        "options": [],
-        "query": "query_result(pg_exporter_last_scrape_duration_seconds)",
-        "refresh": 2,
-        "regex": "/.*kubernetes_namespace=\"([^\"]+).*/",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": "PBFA97CFB590B2093",
-        "definition": "",
-        "includeAll": false,
-        "label": "Release",
-        "name": "release",
-        "options": [],
-        "query": "query_result(pg_exporter_last_scrape_duration_seconds{kubernetes_namespace=\"$namespace\"})",
-        "refresh": 2,
-        "regex": "/.*release=\"([^\"]+)/",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "postgres_exporter:9187",
-          "value": "postgres_exporter:9187"
-        },
-        "datasource": "PBFA97CFB590B2093",
-        "definition": "",
-        "includeAll": false,
-        "label": "Instance",
-        "name": "instance",
-        "options": [],
-        "query": "query_result(pg_up{release=\"$release\"})",
-        "refresh": 1,
-        "regex": "/.*instance=\"([^\"]+).*/",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "PBFA97CFB590B2093",
-        "definition": "",
-        "includeAll": true,
-        "label": "Database",
-        "multi": true,
-        "name": "datname",
-        "options": [],
-        "query": "label_values(datname)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "PBFA97CFB590B2093",
-        "definition": "",
-        "includeAll": true,
-        "label": "Lock table",
-        "multi": true,
-        "name": "mode",
-        "options": [],
-        "query": "label_values({mode=~\"accessexclusivelock|accesssharelock|exclusivelock|rowexclusivelock|rowsharelock|sharelock|sharerowexclusivelock|shareupdateexclusivelock\"}, mode)",
-        "refresh": 1,
-        "regex": "",
-        "type": "query"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "2025-07-25T19:27:41.874Z",
@@ -2007,5 +1874,5 @@
   "timezone": "",
   "title": "PostgreSQL Database",
   "uid": "000000039",
-  "version": 2
+  "version": 1
 }
